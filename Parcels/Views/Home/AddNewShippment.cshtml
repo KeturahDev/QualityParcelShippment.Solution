@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Add a new parcel</h1>
+
+<form action="/add" method="post">
+  <label for="width">width</label>
+  <input type="number" name="width" id="width" value="2">
+  
+  <label for="length">length</label>
+  <input type="number" name="length" id="length" value="3">
+
+  <label for="height">height</label>
+  <input type="number" name="height" id="height" value="4">
+
+  <label for="weight">weight in lbs</label>
+  <input type="number" name="weight" id="weight" value="3">
+
+  <button type="submit">Go</button>
+</form>
