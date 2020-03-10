@@ -35,6 +35,8 @@ namespace Parcels.Models
     {
       Distance = distance;
       LocationName = name;
+      //get price here. 
     }
+
   }
 }
