@@ -2,4 +2,20 @@
   Layout = "_layout";
 }
 
-<h1>Add Location</h1>
+<div class="col-md-8 offset-md-2">
+
+  <h1 class="text-center">Add Location</h1>
+  <form action="/checkout/add" method="post">
+    <div class="form-group">
+      <label for="Name">Location Name</label>
+      <input type="text" name="name" id="Name" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="Distance">Distance</label>
+      <input type="text" name="distance" id="Distance" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-block btn-primary">Submit</button>
+
+  </form>
+</div>

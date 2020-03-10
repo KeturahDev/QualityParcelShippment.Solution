@@ -1,4 +1,38 @@
+@using Parcels.Models;
 @{
   Layout = "_Layout";
 }
 <h1>Cart list here</h1>
+
+@{
+  int count = 0;
+  foreach (var item in Model)
+  {
+    count++;
+    <h4>Package @count</h4>
+    <p>Weight : @item.Weight</p>
+    <p>Volume : @item.Volume</p>
+    <form action="/delete/parcel" method="post">
+      <button class="btn btn-danger" name="count" value="@count">Delete Parcel</button>
+    </form>
+  }
+}
+<hr>
+@if(Location.Distance <= 0)
+{
+  <p>Add Shipping Location</p>
+  <a href="/checkout/form"><button class="btn btn-info">Add Location</button></a> 
+}
+else
+{
+  <p>Shipping to @Location.LocationName</p>
+  <p>Shipping distance @Location.Distance</p>
+  <p>Number of packages to ship : @Model.Count</p>
+  <h4>Shipping Price : $@Location.Price</h4>
+   <a href="/checkout/form"><button class="btn btn-info">Change Location</button></a> 
+   <form action="/delete/all" method="post">
+    <button class="btn btn-info">Confirm Purchase</button>
+   </form>
+
+}
+

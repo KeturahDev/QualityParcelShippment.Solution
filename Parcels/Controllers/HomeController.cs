@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using Parcels.Models;
 
 namespace Parcels.Controllers
@@ -14,14 +15,29 @@ namespace Parcels.Controllers
     [HttpGet("/cart")]
     public ActionResult Cart()
     {
-      return View();
+      Location.Price = Parcel.GetPrice();
+      List<Parcel> PList = Location.ParcelsList;
+      return View(PList);
     }
 
     [HttpPost("/add")]
     public ActionResult CreateShippment(int width, int height, int length, int weight)
     {
       Parcel newParcel = new Parcel(width, length, height, weight);
-      return RedirectToAction("Index");
+      return RedirectToAction("Cart");
+    }
+
+    [HttpPost("/delete/parcel")]
+    public ActionResult DeleteParcel(string count)
+    {
+      Location.ParcelsList.RemoveAt(int.Parse(count) - 1);
+      return RedirectToAction("Cart");
+    }
+    [HttpPost("/delete/all")]
+    public ActionResult DeleteAllParcels()
+    {
+      Location.ParcelsList.Clear();
+      return RedirectToAction("Cart");
     }
 
     [HttpGet("/checkout/form")]
@@ -30,7 +46,11 @@ namespace Parcels.Controllers
     [HttpPost("/checkout/add")]
     public ActionResult CreateLocation(int distance, string name)
     {
-      Location newLocation = new Location(distance, name);
+
+      // Location newLocation = new Location(distance, name);
+      Location.Distance = distance;
+      Location.LocationName = name;
+
       return RedirectToAction("Cart");
     }
 

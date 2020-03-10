@@ -1,21 +1,26 @@
 @{
   Layout = "_Layout";
 }
-
-<h1>Add a new parcel</h1>
+<div class="col-md-8 offset-md-2">
+<h1 class="text-center">Add a new parcel</h1>
 
 <form action="/add" method="post">
+ <div class="form-group">
   <label for="width">width</label>
-  <input type="number" name="width" id="width" value="2">
-  
+  <input  class="form-control" type="number" name="width" id="width" value="2">
+</div>
+<div class="form-group">
   <label for="length">length</label>
-  <input type="number" name="length" id="length" value="3">
-
+  <input class="form-control" type="number" name="length" id="length" value="3">
+</div>
+<div class="form-group">
   <label for="height">height</label>
-  <input type="number" name="height" id="height" value="4">
-
+  <input class="form-control" type="number" name="height" id="height" value="4">
+</div>
+<div class="form-group">
   <label for="weight">weight in lbs</label>
-  <input type="number" name="weight" id="weight" value="3">
-
-  <button type="submit">Go</button>
+  <input class="form-control" type="number" name="weight" id="weight" value="3">
+</div>
+  <button class="btn btn-lg btn-block btn-primary" type="submit">Go</button>
 </form>
+<div>

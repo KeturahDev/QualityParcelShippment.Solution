@@ -4,8 +4,9 @@ namespace Parcels.Models
 {
   public class Parcel
   {
+
     public int Width { get; set; }
-    public int Length { get; set; }
+    public int PLength { get; set; }
     public int Height { get; set; }
     public int Weight { get; set; }
     public int Volume { get; set; }
@@ -13,12 +14,33 @@ namespace Parcels.Models
     public Parcel(int width, int length, int height, int weight)
     {
       Width = width;
-      Length = length;
+      PLength = length;
       Height = height;
-      Width = width;
+      Weight = weight;
       Volume = length * width * height;
 
       Location.ParcelsList.Add(this);
+    }
+
+    public static int GetPrice()
+    {
+      if (Location.ParcelsList.Count > 0)
+      {
+        int volume = 0;
+        int weight = 0;
+        foreach (var item in Location.ParcelsList)
+        {
+          volume += item.Volume;
+          weight += item.Weight;
+        }
+        return volume / weight;
+        // return (volume / weight);
+        // return (volume / weight) * (Location.Distance / 10);
+      }
+      else
+      {
+        return 0;
+      }
     }
   }
 
@@ -26,17 +48,10 @@ namespace Parcels.Models
   {
     public static List<Parcel> ParcelsList { get; set; } = new List<Parcel>();
 
-    public int Distance { get; set; }
-    public string LocationName { get; set; }
+    public static int Distance { get; set; }
+    public static string LocationName { get; set; }
 
-    public int price { get; set; }
-
-    public Location(int distance, string name)
-    {
-      Distance = distance;
-      LocationName = name;
-      //get price here. 
-    }
+    public static int Price { get; set; }
 
   }
 }
